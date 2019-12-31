@@ -16,8 +16,9 @@
       - name: google-japanese-ime
       - name: iterm2
       - name: macupdater
-      - name: sourcetree
+      - name: skitch
       - name: slack
+      - name: sourcetree
       - name: tweetbot
       - name: visual-studio-code
  
