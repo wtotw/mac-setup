@@ -5,11 +5,11 @@
   vars:
     homebrew_taps:
       - homebrew/core
-      - homebrew/versions
 
     homebrew_cask_packages:
       - name: alfred
       - name: appcleaner
+      - name: day-o
       - name: docker
       - name: dozer
       - name: firefox
