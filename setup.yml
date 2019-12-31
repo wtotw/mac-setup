@@ -1,11 +1,12 @@
 - name: mac setup
   hosts: localhost
   connection: local
- 
+
   vars:
     homebrew_taps:
+      - homebrew/core
       - homebrew/versions
- 
+
     homebrew_cask_packages:
       - name: alfred
       - name: appcleaner
@@ -21,7 +22,7 @@
       - name: sourcetree
       - name: tweetbot
       - name: visual-studio-code
- 
+
     homebrew_packages:
       - name: awscli
       - name: git
@@ -38,20 +39,20 @@
     - name: homebrew update
       homebrew:
         update_homebrew: yes
- 
+
     - name: homebrew tap
       homebrew_tap:
         name: '{{ item }}'
         state: present
       with_items: '{{ homebrew_taps }}'
- 
+
     - name: homebrew cask packages install
       homebrew_cask: name={{ item.name }} state=installed
       # ※1 GUIツールをインストールする場所を `/Application` に固定
       environment:
         HOMEBREW_CASK_OPTS: "--appdir=/Applications"
       with_items: '{{ homebrew_cask_packages }}'
- 
+
     - name: homebrew packages install
       homebrew:
         name: '{{ item.name }}'
