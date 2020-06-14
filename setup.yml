@@ -12,6 +12,7 @@
       - name: day-o
       - name: docker
       - name: dozer
+      - name: evernote
       - name: firefox
       - name: google-chrome
       - name: google-japanese-ime
