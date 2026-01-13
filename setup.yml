@@ -3,22 +3,18 @@
   connection: local
 
   vars:
-    homebrew_taps:
-      - homebrew/core
-
     homebrew_cask_packages:
       - name: appcleaner
+      - name: arc
+      - name: cursor
+      - name: dbeaver-community
+      - name: discord
       - name: docker
-      - name: dozer
-      - name: firefox
       - name: google-chrome
-      - name: iterm2
-      - name: macupdater
+      - name: google-japanese-ime
+      - name: hiddenbar
       - name: raycast
-      - name: skitch
       - name: slack
-      - name: sourcetree
-      - name: visual-studio-code
       - name: warp
 
     homebrew_packages:
@@ -26,37 +22,32 @@
       - name: git
       - name: jq
       - name: mas
+      - name: mise
 
     mas_packages:
       - {id: 539883307, name: LINE}
-      - {id: 441258766, name: Magnet}
-      - {id: 568494494, name: Pocket}
-      - {id: 1176895641, name: Spark}
 
   tasks:
     - name: homebrew update
-      homebrew:
-        update_homebrew: yes
-
-    - name: homebrew tap
-      homebrew_tap:
-        name: '{{ item }}'
-        state: present
-      with_items: '{{ homebrew_taps }}'
-
-    - name: homebrew cask packages install
-      homebrew_cask: name={{ item.name }} state=installed
-      # ※1 GUIツールをインストールする場所を `/Application` に固定
-      environment:
-        HOMEBREW_CASK_OPTS: "--appdir=/Applications"
-      with_items: '{{ homebrew_cask_packages }}'
+      community.general.homebrew:
+        update_homebrew: true
 
     - name: homebrew packages install
-      homebrew:
+      community.general.homebrew:
         name: '{{ item.name }}'
-        state: '{{ item.state | default("present") }}'
+        state: present
       with_items: '{{ homebrew_packages }}'
 
+    - name: homebrew cask packages install
+      community.general.homebrew_cask:
+        name: '{{ item.name }}'
+        state: present
+        install_options:
+          - '--appdir=/Applications'
+      with_items: '{{ homebrew_cask_packages }}'
+
     - name: mas packages install
-      shell: mas install {{ item.id }}
+      community.general.mas:
+        id: '{{ item.id }}'
+        state: present
       with_items: '{{ mas_packages }}'
