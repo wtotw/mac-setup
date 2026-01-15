@@ -13,6 +13,7 @@
       - name: google-chrome
       - name: google-japanese-ime
       - name: hiddenbar
+      - name: notion
       - name: raycast
       - name: slack
       - name: warp
