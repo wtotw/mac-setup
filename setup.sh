@@ -12,4 +12,4 @@ brew update
 brew install ansible
 
 # Execute Ansible
-ansible-playbook setup.yml
+ansible-playbook setup.yml --ask-become-pass
