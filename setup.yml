@@ -6,7 +6,6 @@
     homebrew_cask_packages:
       - name: appcleaner
       - name: arc
-      - name: cursor
       - name: dbeaver-community
       - name: discord
       - name: docker
@@ -16,6 +15,7 @@
       - name: notion
       - name: raycast
       - name: slack
+      - name: visual-studio-code
       - name: warp
 
     homebrew_packages:
